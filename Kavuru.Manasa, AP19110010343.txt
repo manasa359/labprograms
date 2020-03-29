@@ -1,0 +1,228 @@
+1)NAME:kavuru manasa.
+2)APPLICATION NUMBER:AP19110010343.
+1)write a c program to print preorder inorder and postorder tranversal on binarytree.
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node{
+
+    int data;
+    struct node* left;
+    struct node* right;
+};
+
+void inorder(struct node*root){
+    if(root==NULL)return;
+    inorder(root->left);
+    printf("%d-",root->data);
+    inorder(root->right);
+}
+
+void preorder(struct node*root){
+    if(root==NULL)return;
+    printf("%d-",root->data);
+    preorder(root->left);
+    preorder(root->right);
+}
+
+void postorder(struct node*root){
+    if(root==NULL)return;
+    postorder(root->left);
+    postorder(root->right);
+    printf("%d-",root->data);
+   
+}
+struct node*createNode(int valve)
+{
+    struct node*newNode=malloc(sizeof(struct node));
+    newNode->data=valve;
+    newNode->left=NULL;
+    newNode->right=NULL;
+ 
+    return newNode;
+   
+}
+
+void main()
+{
+    struct node*root=createNode(1);
+    root->left=createNode(12);
+    root->right=createNode(9);
+   
+    root->left->left=createNode(10);
+    root->left->right=createNode(15);
+   
+   
+    printf("Inorder traversal\n");
+    inorder(root);
+   
+   
+    printf("\nPreorder traversal\n");
+    preorder(root);
+   
+   
+    printf("\nPostorder traversal\n");
+    postorder(root);
+   
+   
+}
+output:
+Inorder traversal
+10-12-15-1-9-
+Preorder traversal
+1-12-15-9-
+Postorder traversal
+10-15-12-9-1
+
+
+2).Write a c program to create and inorder traversal on binary search tree.
+
+#include<stdio.h>
+#include<stdlib.h>
+struct node {
+    int data;
+    struct node* left;
+    struct node* right;
+};
+struct node *newNode(int item)
+{
+    struct node *temp =  (struct node *)malloc(sizeof(struct node));
+    temp->data = item;
+    temp->left = temp->right = NULL;
+    return temp;
+}
+struct node* insert(struct node *node, int value)
+{
+if (node == NULL) return newNode(value);
+  if (value < node->data)
+        node->left  = insert(node->left, value);
+    else if (value > node->data)
+        node->right = insert(node->right, value);    
+return node;
+}  
+void inorder(struct node* root){
+    if(root == NULL) return;
+    inorder(root->left);
+    printf("%d ->", root->data);
+    inorder(root->right);
+}
+void main(){
+    struct node *root = NULL;
+    root = insert(root, 50);
+    insert(root, 30);
+    insert(root, 20);
+    insert(root, 40);
+    insert(root, 70);
+    insert(root, 60);
+    insert(root, 80);
+ printf("\inorder traversal \n");
+    inorder(root);
+}
+output:
+inorder traversal
+20->30->40->60->70->80->
+3) write a c program for linear search algorithm.
+#include <stdio.h>
+void main()
+{
+int array[100],b,i,n;
+
+printf("enter the number of elements in array\n");
+scanf("%d",&n);
+printf("enter integer(s)\n");
+for(i=0;i<n;i++)
+    scanf("%d",&array[i]);
+printf("enter the number to search\n");
+scanf("%d",&b);
+ for(i=0;i<n;i++)  
+{
+    if (array[i]==b)
+    {
+          printf("%d is present at location %d.\n",b,i+1);
+               break;
+     }
+}
+if(i==n)
+  printf("%d is not present in the array.\n",b);
+return 0;
+}
+output:
+enter the number of elements in the array
+5
+enter integer(s)                                                                                                                              
+20                                                                                                                                            
+15                                                                                                                                            
+30                                                                                                                                            
+25                                                                                                                                            
+65                                                                                                                                            
+enter the number to search 
+15
+15 is present at location 2.
+4).write a c program for binary search algorithim  
+#include<stdio.h>
+int main()
+{
+    int i,n,first,last,j,middle,swap,b,array[100];
+    printf("enter number of elements\n");
+    scanf("%d",&n);
+    printf("enter the elements\n");
+    for(i=0;i<n;i++)
+    {
+      scanf("%d",&array[i]);
+    }
+    printf("enter value to search \n");
+    scanf("%d",&b);
+    first=0;
+    last=n-1;
+      for(i=0;i<n;i++)
+      {
+          for(j=0;j<n-1;j++)
+          {
+              if(array[j]>array[j+1])
+              {
+                  swap=array[j];
+                  array[j]=array[j+1];
+                  array[j+1]=swap;
+              }
+          }
+      }
+      while(first<=last)
+      {
+        middle=(first+last)/2;
+        if(array[middle]<b)
+        {
+         first=middle+1;
+        }
+        else if(array[middle]==b)
+        {
+            printf("%d found at location %d.\n",b,middle+1);
+            break;
+        }
+        else
+        {
+         last=middle-1;
+        }
+    }
+    if(first>last)
+    {
+        printf("not found%d isn't present in the list.\n",b);
+        return 0;
+    }
+}
+output:
+enter number of elements
+5
+enter the elements
+20
+15
+30
+25
+65
+enter value to search 
+15
+15 found at location 4.
+
+
+
+
+
